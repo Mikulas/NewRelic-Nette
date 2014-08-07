@@ -4,6 +4,11 @@ namespace VrtakCZ\NewRelic;
 
 use Nette\PhpGenerator\ClassType;
 use Nette\Application\UI\Presenter;
+use Tracy\Logger;
+
+if (!class_exists('Tracy\Logger')) {
+	class_alias('Tracy\Logger', 'Nette\Diagnostics\Logger');
+}
 
 class Extension extends \Nette\DI\CompilerExtension
 {
@@ -15,8 +20,8 @@ class Extension extends \Nette\DI\CompilerExtension
 	/** @var array */
 	public $defaults = array(
 		'logLevel' => array(
-			\Nette\Diagnostics\Logger::ERROR,
-			\Nette\Diagnostics\Logger::CRITICAL,
+			Logger::ERROR,
+			Logger::CRITICAL,
 		),
 		'rum' => array(
 			'enabled' => 'auto',
